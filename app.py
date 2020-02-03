@@ -27,13 +27,8 @@ api.add_resource(Stores, '/stores')
 api.add_resource(RegisterUser, '/register')
 
 
-@app.before_first_request
-def create_tables():
-    sqla_db.create_all()
-
-
 if __name__ == '__main__':
-    from section_6.database.sqlalchemy_db import sqla_db
+    from database.sqlalchemy_db import sqla_db
     sqla_db.init_app(app)
 
     # NOTE: default port is 5000
