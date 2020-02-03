@@ -2,6 +2,8 @@
 Flask:
     1.  app.py
 """
+import os
+
 from flask import Flask
 from flask_jwt import JWT
 from flask_restful import Api
@@ -13,7 +15,7 @@ from secure import authenticate, identity
 
 app = Flask(__name__)
 # NOTE: https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'secret'
 api = Api(app)
